@@ -1,15 +1,52 @@
-/*********************************************************************************************************
-**  Base
+/**********************************************************************************************************************
+** Typography
 */
 
-::-webkit-selection { background: #00B17B; color: #fff; text-shadow: none; }
-::-moz-selection { background: #00B17B; color: #fff; text-shadow: none; }
-::selection { background: #00B17B; color: #fff; text-shadow: none; }
-
-*, *::after, *::before {
-    box-sizing: border-box;
+@font-face {
+    font-family: 'Foro Sans';
+    src: url('../fonts/forosansxlig-webfont.eot');
+    src: url('../fonts/forosansxlig-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/forosansxlig-webfont.woff2') format('woff2'),
+    url('../fonts/forosansxlig-webfont.woff') format('woff'),
+    url('../fonts/forosansxlig-webfont.ttf') format('truetype'),
+    url('../fonts/forosansxlig-webfont.svg#foro_sansextralight') format('svg');
+    font-weight: 200;
+    font-style: normal;
 }
-a, a:hover, a:focus, a:active, a:visited {
-    outline: none;
+
+@font-face {
+    font-family: 'Foro Sans';
+    src: url('../fonts/forosanslig-webfont.eot');
+    src: url('../fonts/forosanslig-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/forosanslig-webfont.woff2') format('woff2'),
+    url('../fonts/forosanslig-webfont.woff') format('woff'),
+    url('../fonts/forosanslig-webfont.ttf') format('truetype'),
+    url('../fonts/forosanslig-webfont.svg#foro_sanslight') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Foro Sans';
+    src: url('../fonts/forosansbol-webfont.eot');
+    src: url('../fonts/forosansbol-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/forosansbol-webfont.woff2') format('woff2'),
+    url('../fonts/forosansbol-webfont.woff') format('woff'),
+    url('../fonts/forosansbol-webfont.ttf') format('truetype'),
+    url('../fonts/forosansbol-webfont.svg#foro_sansbold') format('svg');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Foro Sans';
+    src: url('../fonts/forosansxbol-webfont.eot');
+    src: url('../fonts/forosansxbol-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/forosansxbol-webfont.woff2') format('woff2'),
+    url('../fonts/forosansxbol-webfont.woff') format('woff'),
+    url('../fonts/forosansxbol-webfont.ttf') format('truetype'),
+    url('../fonts/forosansxbol-webfont.svg#foro_sansextrabold') format('svg');
+    font-weight: 800;
+    font-style: normal;
 }
 
