@@ -112,12 +112,31 @@ ul {
 /*********************************************************************************************************
 **  Button
 */
-
-.green {
-    background-color: #00B17B;
-    color: #fff;
+.button {
     display: block;
     padding: 8px 21px;
+}
+.button.green {
+    background-color: #00B17B;
+    color: #fff;
+    opacity: 1;
+}
+.button.green:hover,
+.button.green:focus,
+.button.green:active {
+    opacity: 0.6;
+}
+.button.transparent {
+    color: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+}
+.button.transparent:hover,
+.button.transparent:focus,
+.button.transparent:active,
+.button.transparent.active {
+    background-color: #01519e;
+    color: #fff;
+    border-color: #01519e;
 }
 
 
@@ -140,7 +159,7 @@ header {
 /*********************************************************************************************************
 **  Content
 */
-.flex-container {
+.flex-container, .table-row {
     -ms-box-orient: horizontal;
     display: -webkit-box;
     display: -moz-box;
@@ -148,6 +167,9 @@ header {
     display: -moz-flex;
     display: -webkit-flex;
     display: flex;
+}
+.table-row {
+    flex-direction: row;
 }
 .flex-start {
     -webkit-justify-content: flex-start;
@@ -166,10 +188,26 @@ header {
     -webkit-justify-content: center;
     justify-content: center;
 }
+.column {
+    flex-grow: 0;
+    flex-shrink: 0;
+    vertical-align: top;
+}
+.col-2 {
+    width: 15%;
+    padding: 21px 0;
+}
+.col-3 {
+    width: 21%;
+    padding: 21px;
+}
+.col-5 {
+    width: 55%;
+    padding: 21px;
+}
 
 main {
     width: 100%;
-    height: 610px;
     padding: 55px 0;
 }
 
@@ -180,14 +218,46 @@ select {
     border: none;
     text-align: center;
     cursor: pointer;
+    opacity: 1;
+}
+select:hover {
+    opacity: 0.6;
 }
 option {
     padding: 13px 26px;
     text-align: center;
 }
-
-
-
+.flex-container.space-between > ul,
+.flex-container.space-between > select {
+    text-align: center;
+    width: 21%;
+}
+.list-wrap {
+    margin-top: 34px;
+}
+.filter-item {
+    text-align: center;
+    width: 21%;
+}
+.filter-item:nth-child(2) a,
+.filter-item:nth-child(3) a {
+    border-left: none;
+}
+.filter-item:last-child {
+    margin-left: auto;
+}
+.list-item-wrap {
+    margin-top: 34px;
+}
+.table-row:nth-child(odd) {
+    background-color: #EEF7F8;
+}
+.right .button {
+    text-align: center;
+}
+.title {
+    font-weight: 600;
+}
 /*********************************************************************************************************
 **  Footer
 */
