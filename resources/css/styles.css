@@ -269,7 +269,9 @@ textarea {
 .title {
     font-weight: 600;
 }
-
+#rating-9 {
+    display: none;
+}
 
 }
 .importance > span {
