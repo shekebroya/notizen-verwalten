@@ -195,7 +195,7 @@ header {
 }
 .col-2 {
     width: 15%;
-    padding: 21px 0;
+    padding: 21px;
 }
 .col-3 {
     width: 21%;
@@ -205,12 +205,15 @@ header {
     width: 55%;
     padding: 21px;
 }
+.col-9 {
+    width: 79%;
+    padding: 21px;
+}
 
 main {
     width: 100%;
     padding: 55px 0;
 }
-
 
 select {
     background-color: #00B17B;
@@ -226,6 +229,14 @@ select:hover {
 option {
     padding: 13px 26px;
     text-align: center;
+}
+input, textarea {
+    border: 1px solid #00b17b;
+    width: 100%;
+    padding: 13px 21px;
+}
+textarea {
+    min-height: 89px;
 }
 .flex-container.space-between > ul,
 .flex-container.space-between > select {
@@ -249,7 +260,7 @@ option {
 .list-item-wrap {
     margin-top: 34px;
 }
-.table-row:nth-child(odd) {
+.list-item:nth-child(odd) {
     background-color: #EEF7F8;
 }
 .right .button {
@@ -257,6 +268,85 @@ option {
 }
 .title {
     font-weight: 600;
+}
+
+
+}
+.importance > span {
+    display: inline-block;
+    position: relative;
+    width: 35px;
+    cursor: pointer;
+    font-size: 21px;
+    color: #00b17b;
+}
+.importance > span.active:before,
+.importance > span:hover:before,
+.importance > span:hover ~ span:before {
+    content: "\2605";
+    position: absolute;
+}
+
+
+fieldset {
+    border: 0;
+    background: #EEF7F8;
+
+}
+
+.importance {
+    font-size: 0;
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    display: inline-block;
+}
+.importance * {
+    font-size: 21px;
+}
+
+.importance > input {
+    display: none;
+}
+.importance input + label {
+        display: inline-block;
+        overflow: hidden;
+        text-indent: 9999px;
+        width: 21px;
+        white-space: nowrap;
+        cursor: pointer;
+}
+.importance input + label:before {
+     display: inline-block;
+     text-indent: -9999px;
+    content: "\2606";
+     color: #00b17b;
+}
+
+.importance > input:checked ~ label:before,
+.importance > input + label:hover ~ label:before,
+.importance > input + label:hover:before {
+        content: "\2605";
+        color: #00b17b;
+}
+
+.importance > .star-cb-clear + label {
+    text-indent: -9999px;
+    width: 21px;
+    margin-left: 21px;
+}
+.importance > .star-cb-clear + label:before {
+    width: 21px;
+}
+
+.importance:hover > input + label:before {
+     content: "\2606";
+     color: #00b17b;
+     text-shadow: none;
+ }
+.importance:hover > input + label:hover ~ label:before,
+.importance:hover > input + label:hover:before {
+     content: "\2605";
+     color: #00b17b;
 }
 /*********************************************************************************************************
 **  Footer
