@@ -200,10 +200,12 @@ header {
 .col-3 {
     width: 21%;
     padding: 21px;
+    text-align: left;
 }
 .col-5 {
     width: 55%;
     padding: 21px;
+    text-align: left;
 }
 .col-9 {
     width: 79%;
@@ -266,6 +268,9 @@ textarea {
 .right .button {
     text-align: center;
 }
+.col-12.right {
+    text-align: right;
+}
 .title {
     font-weight: 600;
 }
@@ -273,23 +278,29 @@ textarea {
     display: none;
 }
 
-}
 .importance > span {
     display: inline-block;
     position: relative;
-    width: 35px;
-    cursor: pointer;
+    width: 26px;
+    cursor: default;
     font-size: 21px;
     color: #00b17b;
 }
-.importance > span.active:before,
-.importance > span:hover:before,
-.importance > span:hover ~ span:before {
+.importance > span.active:before {
     content: "\2605";
     position: absolute;
 }
-
-
+.list-item .importance {
+    padding: 21px 21px 0 0;
+}
+.finished-checkbox {
+    float: left;
+}
+.finished-checkbox input {
+    float: left;
+    width: 21px;
+    height: 18px;
+}
 fieldset {
     border: 0;
     background: #EEF7F8;
@@ -327,8 +338,8 @@ fieldset {
 .importance > input:checked ~ label:before,
 .importance > input + label:hover ~ label:before,
 .importance > input + label:hover:before {
-        content: "\2605";
-        color: #00b17b;
+    content: "\2605";
+    color: #00b17b;
 }
 
 .importance > .star-cb-clear + label {
