@@ -138,7 +138,9 @@ ul {
     color: #fff;
     border-color: #01519e;
 }
-
+.button-hide {
+    display: none;
+}
 
 /*********************************************************************************************************
 **  Header
@@ -160,15 +162,11 @@ header {
 **  Content
 */
 .flex-container, .table-row {
-    -ms-box-orient: horizontal;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -moz-flex;
     display: -webkit-flex;
     display: flex;
 }
 .table-row {
+    -webkit-flex-direction: row;
     flex-direction: row;
 }
 .flex-start {
@@ -189,7 +187,9 @@ header {
     justify-content: center;
 }
 .column {
+    -webkit-flex-grow: 0;
     flex-grow: 0;
+    -webkit-flex-shrink: 0;
     flex-shrink: 0;
     vertical-align: top;
 }
@@ -240,6 +240,7 @@ input, textarea {
 textarea {
     min-height: 89px;
 }
+
 .flex-container.space-between > ul,
 .flex-container.space-between > select {
     text-align: center;

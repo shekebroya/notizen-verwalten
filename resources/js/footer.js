@@ -5,51 +5,70 @@ window.onload = function() {
     localStorage.removeItem('test');
     delete window.localStorage["test"];*/
 
+    moment().locale("de");
+
     let buttonExist = document.getElementById("submit");
     let listExist = document.getElementsByClassName("list-item-wrap");
 
     if(buttonExist) {
-        console.log("note.htlm");
+        console.log("note.html");
+        let listName = "";
+        let listKey = "";
+        let hasBeenEdited = false;
+        for (let j = 0; j < localStorage.length; ++j) {
+            listKey = localStorage.key(j);
+            listName = JSON.parse(localStorage.getItem('listItem-'+j));
+            let edeting = listName.editing;
+            if(edeting) {
+                console.log(listKey);
+                document.getElementById('title').value = listName.title;
+                document.getElementById('description').value = listName.description;
+                document.getElementById('rating-'+listName.importance).checked = true;
+                document.getElementById('date').value = moment(listName.date).format('YYYY-MM-DD');
+                document.getElementById('cancel').className += " button-hide";
+                hasBeenEdited = true;
+                break;
+            }
+        }
         buttonExist.addEventListener("click", function() {
-            setData();
+            setData(hasBeenEdited, listKey);
         });
     }
     if(listExist.length > 0) {
         getList();
     }
+
 };
 
 /***************************************************************************
 *** FUNCTIONS ***/
 
 
-function setData() {
-    console.log("note.html");
+function setData(hasBeenEdited, listKey) {
 
     let titleValue = document.getElementById("title").value;
     let descriptionValue = document.getElementById("description").value;
     let importanceValue = document.querySelector('.rating:checked').value;
-    let finishDateValue = document.getElementById("date").value;
+    let date = document.getElementById("date").value;
+    let finishDateValue = moment(date).locale("de").format('YYYY-MM-DD');
+    let day = moment(date).locale("de").format('dddd');
     let finished = false;
     let editing = false;
     let listItem = "";
 
-    let saveValuesInLocalStorage = new itemClass(titleValue, descriptionValue, importanceValue, finishDateValue, finished, editing, listItem);
+    if(hasBeenEdited) {
+        listItem = listKey;
+    }
 
+    let saveValuesInLocalStorage = new itemClass(titleValue, descriptionValue, importanceValue, finishDateValue, finished, editing, listItem, day);
 
     //console.log(saveValuesInLocalStorage.setList);
-
 }
 
 function getList() {
     console.log("index.html");
 
 
-    //getList
-    for (let j = 0; j < localStorage.length; ++j) {
-        let localStoradeList = JSON.parse(localStorage.getItem('listItem-'+j));
-        console.log("localStoradeList: "+localStoradeList.title);
-    }
 
     // all local storage keys and values
     for (let i = 0; i < localStorage.length; ++i) {
@@ -61,10 +80,10 @@ function getList() {
         let key = localStorage.key(k);
         let value = localStorage[key];
         let noteList = document.getElementById("note-list");
+        let day = JSON.parse(localStorage.getItem('listItem-'+k)).day;
         let titleValue = JSON.parse(localStorage.getItem('listItem-'+k)).title;
         let descriptionValue = JSON.parse(localStorage.getItem('listItem-'+k)).description;
         let importanceValue = JSON.parse(localStorage.getItem('listItem-'+k)).importance;
-
         let tagContent ="";
         console.log("key: "+key);
         console.log("value: "+value);
@@ -97,7 +116,7 @@ function getList() {
         }
         tagContent += '</div>';
         tagContent += '<div class="table-row space-between"><div class="col-3 left">';
-        tagContent += '<div>Nächten Mittwoch</div>';
+        tagContent += '<div>'+day+'</div>';
         tagContent += '<div class="finished-checkbox"><input id="finish-'+key+'" type="checkbox" name="finish" value="finished"> <label for="finish-'+key+'">Finished</label></div>';
         tagContent += '</div>';
         tagContent += '<div class="col-5 middle">';
@@ -123,8 +142,9 @@ function getList() {
         let finished = listName.finished;
         let editing = true;
         let listItem = keyValue;
+        let day = listName.day;
 
-        let editValuesInLocalStorage = new itemClass(titleValue, descriptionValue, importanceValue, finishDateValue, finished, editing, listItem);
+        let editValuesInLocalStorage = new itemClass(titleValue, descriptionValue, importanceValue, finishDateValue, finished, editing, listItem, day);
         
     };
     for (let m = 0; m < editButton.length; m++) {
@@ -132,22 +152,22 @@ function getList() {
     }
 
 
-
 }
 
 /***************************************************************************
  *** CLASS ***/
 
-function itemClass(titleValue, descriptionValue, importanceValue, finishDateValue, finished, editing, listItem) {
+function itemClass(titleValue, descriptionValue, importanceValue, finishDateValue, finished, editing, listItem, day) {
 
     this.titleValue = titleValue;
     this.descriptionValue = descriptionValue;
     this.importanceValue = importanceValue;
     this.finishDateValue = finishDateValue;
     this.numberListItems = localStorage.length;
-    this.createdValue = new Date();
+    this.createdValue = moment().format("dddd, MMMM Do YYYY, h:mm:ss");
     this.finished = finished;
     this.editing = editing;
+    this.day = day;
 
     if(listItem.length > 0) {
         this.listItem = listItem;
@@ -164,7 +184,8 @@ function itemClass(titleValue, descriptionValue, importanceValue, finishDateValu
         finishDate: this.finishDateValue,
         created: this.createdValue,
         finished: this.finished,
-        editing: this.editing
+        editing: this.editing,
+        day: this.day
     };
     localStorage.setItem(this.listItem, JSON.stringify(this.setList));
 
