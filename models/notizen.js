@@ -8,7 +8,7 @@ const notizenSchema = mongoose.Schema({
         type: String
     },
     importance:{
-        type: Number
+        type: String
     },
     finishDate:{
         type: String
@@ -25,26 +25,10 @@ const notizenSchema = mongoose.Schema({
     }
 });
 
-const Notiz = module.exports = mongoose.model("Notiz", notizenSchema);
+const Notizen = module.exports = mongoose.model("Notizen", notizenSchema);
 
 
-// GET Notiz
-module.exports.getNotiz = (callback, limit) => {
-    Notiz.find(callback).limit(limit);
-}
-// Add Genre
-module.exports.addNotiz = (notizen, callback) => {
-    Genre.create(notizen, callback);
-}
-
-// Update Genre
-module.exports.updateNotiz = (id, notizen, options, callback) => {
-    var query = {_id: id};
-    var update = {
-        title: notizen.title,
-        description: notizen.description,
-        importance: notizen.importance,
-        finished: notizen.finished
-    }
-    Notiz.findOneAndUpdate(query, update, options, callback);
+// GET Notizen
+module.exports.getNotizen = (callback, limit) => {
+    Notizen.find(callback).limit(limit);
 }
