@@ -5,8 +5,6 @@ window.onload = function() {
     localStorage.removeItem('test');
     delete window.localStorage["test"];*/
 
-    moment().locale("de");
-
     let buttonExist = document.getElementById("submit");
     let listExist = document.getElementsByClassName("list-item-wrap");
 
@@ -36,6 +34,7 @@ window.onload = function() {
     }
     if(listExist.length > 0) {
         getList();
+
     }
 
 };
@@ -62,17 +61,22 @@ function setData(hasBeenEdited, listKey) {
 
     let saveValuesInLocalStorage = new itemClass(titleValue, descriptionValue, importanceValue, finishDateValue, finished, editing, listItem, day);
 
-    //console.log(saveValuesInLocalStorage.setList);
 }
 
 function getList() {
-    console.log("index.html");
 
-
-
-    // all local storage keys and values
-    for (let i = 0; i < localStorage.length; ++i) {
-        console.log(localStorage.getItem(localStorage.key(i)));
+    SortLocalStorage();
+    function SortLocalStorage(){
+        if(localStorage.length > 0){
+            var localStorageArray = new Array();
+            for (i=0;i<localStorage.length;i++){
+                localStorageArray[i] = localStorage.key(i)+localStorage.getItem(localStorage.key(i));
+            }
+        }
+        console.log("localStorageArray "+localStorageArray);
+        var sortedArray = localStorageArray.sort();
+        console.log("sortedArray "+sortedArray);
+        return sortedArray;
     }
 
     for(let k=0; k < localStorage.length; k++) {
@@ -88,6 +92,7 @@ function getList() {
         console.log("key: "+key);
         console.log("value: "+value);
         console.log("importanceValue: " + importanceValue);
+
 
         tagContent += '<div id="' + key + '" class="list-item">';
         tagContent += '<div class="col-12 right"><div class="importance">';
@@ -128,6 +133,20 @@ function getList() {
         tagContent += '</div>';
 
         noteList.innerHTML += tagContent;
+
+        document.getElementById("importance").addEventListener("click", function() {
+            sortByImportance();
+        });
+
+        function sortByImportance() {
+
+            var byImportance = setData.saveValuesInLocalStorage.slice(0);
+            byImportance.sort(function(a,b) {
+                return a.importance - b.importance;
+            });
+            console.log('importance:');
+            console.log(byImportance);
+        }
     }
 
     let editButton = document.getElementsByClassName("edit-button");
@@ -150,7 +169,6 @@ function getList() {
     for (let m = 0; m < editButton.length; m++) {
         editButton[m].addEventListener('click', editFunction, false);
     }
-
 
 }
 
