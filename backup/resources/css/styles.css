@@ -1,0 +1,378 @@
+/*********************************************************************************************************
+**  Base
+*/
+
+::-webkit-selection { background: #00B17B; color: #fff; text-shadow: none; }
+::-moz-selection { background: #00B17B; color: #fff; text-shadow: none; }
+::selection { background: #00B17B; color: #fff; text-shadow: none; }
+
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+a, a:hover, a:focus, a:active, a:visited {
+    outline: none;
+    text-decoration: none;
+}
+
+/**********************************************************************************************************************
+** Typography
+*/
+
+@font-face {
+    font-family: 'Foro Sans';
+    src: url('../fonts/forosansxlig-webfont.eot');
+    src: url('../fonts/forosansxlig-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/forosansxlig-webfont.woff2') format('woff2'),
+    url('../fonts/forosansxlig-webfont.woff') format('woff'),
+    url('../fonts/forosansxlig-webfont.ttf') format('truetype'),
+    url('../fonts/forosansxlig-webfont.svg#foro_sansextralight') format('svg');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Foro Sans';
+    src: url('../fonts/forosanslig-webfont.eot');
+    src: url('../fonts/forosanslig-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/forosanslig-webfont.woff2') format('woff2'),
+    url('../fonts/forosanslig-webfont.woff') format('woff'),
+    url('../fonts/forosanslig-webfont.ttf') format('truetype'),
+    url('../fonts/forosanslig-webfont.svg#foro_sanslight') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Foro Sans';
+    src: url('../fonts/forosansbol-webfont.eot');
+    src: url('../fonts/forosansbol-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/forosansbol-webfont.woff2') format('woff2'),
+    url('../fonts/forosansbol-webfont.woff') format('woff'),
+    url('../fonts/forosansbol-webfont.ttf') format('truetype'),
+    url('../fonts/forosansbol-webfont.svg#foro_sansbold') format('svg');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Foro Sans';
+    src: url('../fonts/forosansxbol-webfont.eot');
+    src: url('../fonts/forosansxbol-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/forosansxbol-webfont.woff2') format('woff2'),
+    url('../fonts/forosansxbol-webfont.woff') format('woff'),
+    url('../fonts/forosansxbol-webfont.ttf') format('truetype'),
+    url('../fonts/forosansxbol-webfont.svg#foro_sansextrabold') format('svg');
+    font-weight: 800;
+    font-style: normal;
+}
+
+
+body {
+    font-family: "Foro Sans",sans-serif;
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 26px;
+    width: 987px;
+    margin: 0 auto;
+}
+h1 {
+    color: #000;
+    font-size: 55px;
+    font-weight: 100;
+    line-height: 74px;
+    margin-bottom: 45px;
+}
+h2 {
+    color: #fff;
+    font-size: 34px;
+    font-weight: 200;
+    line-height: 48px;
+    margin-bottom: 48px;
+}
+h3 {
+    font-size: 21px;
+    line-height: 33px;
+    color: #fff;
+    font-weight: 200;
+    margin-bottom: 12px;
+}
+p {
+    font-size: 13px;
+    line-height: 26px;
+    margin-bottom: 10px;
+}
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+/*********************************************************************************************************
+**  Button
+*/
+.button {
+    display: block;
+    padding: 8px 21px;
+}
+.button.green {
+    background-color: #00B17B;
+    color: #fff;
+    opacity: 1;
+}
+.button.green:hover,
+.button.green:focus,
+.button.green:active {
+    opacity: 0.6;
+}
+.button.transparent {
+    color: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+}
+.button.transparent:hover,
+.button.transparent:focus,
+.button.transparent:active,
+.button.transparent.active {
+    background-color: #01519e;
+    color: #fff;
+    border-color: #01519e;
+}
+.button-hide {
+    display: none;
+}
+
+/*********************************************************************************************************
+**  Header
+*/
+
+header {
+    padding: 21px;
+    width: 100%;
+    background: rgba(80, 170, 186, 0.10) 100%;
+    background: -webkit-linear-gradient(-174deg, rgba(80, 170, 186, 0.00) 21%, rgba(80, 170, 186, 0.10) 100%) no-repeat top left;
+    background: -moz-linear-gradient(-174deg, rgba(80, 170, 186, 0.00) 21%, rgba(80, 170, 186, 0.10) 100%) no-repeat top left;
+    background: -o-linear-gradient(-174deg, rgba(80, 170, 186, 0.00) 21%, rgba(80, 170, 186, 0.10) 100%) no-repeat top left;
+    background: -ms-linear-gradient(-174deg, rgba(80, 170, 186, 0.00) 21%, rgba(80, 170, 186, 0.10) 100%) no-repeat top left;
+    background:  linear-gradient( -174deg, rgba(80,170,186,0.00) 21%, rgba(80,170,186,0.10) 100%) no-repeat top left;
+}
+
+
+/*********************************************************************************************************
+**  Content
+*/
+.flex-container, .table-row {
+    display: -webkit-flex;
+    display: flex;
+}
+.table-row {
+    -webkit-flex-direction: row;
+    flex-direction: row;
+}
+.flex-start {
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+}
+
+.flex-end {
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+}
+.space-between {
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+.center {
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+.column {
+    -webkit-flex-grow: 0;
+    flex-grow: 0;
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+    vertical-align: top;
+}
+.col-2 {
+    width: 15%;
+    padding: 21px;
+}
+.col-3 {
+    width: 21%;
+    padding: 21px;
+    text-align: left;
+}
+.col-5 {
+    width: 55%;
+    padding: 21px;
+    text-align: left;
+}
+.col-9 {
+    width: 79%;
+    padding: 21px;
+}
+
+main {
+    width: 100%;
+    padding: 55px 0;
+}
+
+select {
+    background-color: #00B17B;
+    color: #fff;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    opacity: 1;
+}
+select:hover {
+    opacity: 0.6;
+}
+option {
+    padding: 13px 26px;
+    text-align: center;
+}
+input, textarea {
+    border: 1px solid #00b17b;
+    width: 100%;
+    padding: 13px 21px;
+}
+textarea {
+    min-height: 89px;
+}
+
+.flex-container.space-between > ul,
+.flex-container.space-between > select {
+    text-align: center;
+    width: 21%;
+}
+.list-wrap {
+    margin-top: 34px;
+}
+.filter-item {
+    text-align: center;
+    width: 21%;
+}
+.filter-item:nth-child(2) a,
+.filter-item:nth-child(3) a {
+    border-left: none;
+}
+.filter-item:last-child {
+    margin-left: auto;
+}
+.list-item-wrap {
+    margin-top: 34px;
+}
+.list-item:nth-child(odd) {
+    background-color: #EEF7F8;
+}
+.right .button {
+    text-align: center;
+}
+.col-12.right {
+    text-align: right;
+}
+.title {
+    font-weight: 600;
+}
+#rating-9 {
+    display: none;
+}
+
+.importance > span {
+    display: inline-block;
+    position: relative;
+    width: 26px;
+    cursor: default;
+    font-size: 21px;
+    color: #00b17b;
+}
+.importance > span.active:before {
+    content: "\2605";
+    position: absolute;
+}
+.list-item .importance {
+    padding: 21px 21px 0 0;
+}
+.finished-checkbox {
+    float: left;
+}
+.finished-checkbox input {
+    float: left;
+    width: 21px;
+    height: 18px;
+}
+fieldset {
+    border: 0;
+    background: #EEF7F8;
+
+}
+
+.importance {
+    font-size: 0;
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    display: inline-block;
+}
+.importance * {
+    font-size: 21px;
+}
+
+.importance > input {
+    display: none;
+}
+.importance input + label {
+        display: inline-block;
+        overflow: hidden;
+        text-indent: 9999px;
+        width: 21px;
+        white-space: nowrap;
+        cursor: pointer;
+}
+.importance input + label:before {
+     display: inline-block;
+     text-indent: -9999px;
+    content: "\2606";
+     color: #00b17b;
+}
+
+.importance > input:checked ~ label:before,
+.importance > input + label:hover ~ label:before,
+.importance > input + label:hover:before {
+    content: "\2605";
+    color: #00b17b;
+}
+
+.importance > .star-cb-clear + label {
+    text-indent: -9999px;
+    width: 21px;
+    margin-left: 21px;
+}
+.importance > .star-cb-clear + label:before {
+    width: 21px;
+}
+
+.importance:hover > input + label:before {
+     content: "\2606";
+     color: #00b17b;
+     text-shadow: none;
+ }
+.importance:hover > input + label:hover ~ label:before,
+.importance:hover > input + label:hover:before {
+     content: "\2605";
+     color: #00b17b;
+}
+/*********************************************************************************************************
+**  Footer
+*/
+
+footer {
+    width: 100%;
+    padding: 21px;
+    background: #50aaba;
+    background: -webkit-linear-gradient(225deg, #50aaba 0px, #01519e 100%) no-repeat scroll 0 0;
+    background: -moz-linear-gradient(225deg, #50aaba 0px, #01519e 100%) no-repeat scroll 0 0;
+    background: -o-linear-gradient(225deg, #50aaba 0px, #01519e 100%) no-repeat scroll 0 0;
+    background: -ms-linear-gradient(225deg, #50aaba 0px, #01519e 100%) no-repeat scroll 0 0;
+    background: linear-gradient(225deg, #50aaba 0px, #01519e 100%) no-repeat scroll 0 0;
+}

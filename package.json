@@ -2,15 +2,16 @@
   "name": "notizen-verwalten",
   "version": "1.0.0",
   "description": "notizen",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "body-parser": "*",
-    "express": "*",
-    "mongoose": "^4.10.8",
-    "nodemon":"^1.11.0"
+    "body-parser": "^1.12.4",
+    "express": "^4.12.4",
+    "express-jwt": "^5.1.0",
+    "jsonwebtoken": "^7.1.9",
+    "nedb": "^1.1.2"
   },
   "repository": {
     "type": "git",

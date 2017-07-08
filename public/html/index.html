@@ -1,0 +1,93 @@
+﻿
+<!DOCTYPE HTML>
+<html lang="de">
+
+<head>
+
+    <meta charset="utf-8" >
+    <title>Projekt: Notizen verwalten</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+    <meta name="viewport" content="width=device-width, initial-scale=1" >
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="description" content="Das Projekt sollte gut strukturiert sein aber weitgehend auf die Nutzung von Frameworks verzichten.">
+    <link type="text/css" rel="stylesheet" href="css/styles.css" >
+
+</head>
+
+<body>
+
+<header>
+    <h1>Projekt: Notizen verwalten</h1>
+    <p>Das Projekt sollte gut strukturiert sein aber weitgehend auf die Nutzung von Frameworks verzichten.</p>
+</header>
+<form class="js-user">
+    <label>
+        <input id="pizzaName" placeholder="Pizza-Name"/>
+    </label>
+    <input class="btn btn-default" type="submit" value="Bestellung abschicken" id="createPizza">
+</form>
+
+<div id="ordersContainer" class="js-user"></div>
+
+<script id="orders-template" type="text/x-handlebars-template">
+<main>
+    <nav class="flex-container space-between">
+        <ul>
+            <li><a class="button green" href="note.html" title="New note">Create new Note</a></li>
+        </ul>
+        <select>
+            <option>Default-Style</option>
+            <option>BlackWhite-Style</option>
+        </select>
+    </nav>
+    <div class="list-wrap">
+        <ul class="list-filter flex-container">
+            <li id="finish" class="filter-item"><a class="button transparent" href="#" title="filter by finish date">Finish-Date</a></li>
+            <li id="created" class="filter-item"><a class="button transparent" href="#" title="filter by created date">Create-Date</a></li>
+            <li id="importance" class="filter-item"><a class="button transparent" href="#" title="filter by importance">Importance</a></li>
+            <li id="finished" class="filter-item"><a class="button transparent" href="#" title="filter by finished notes">Finished</a></li>
+        </ul>
+
+        <div id="note-list" class="list-item-wrap">
+            {{#each orders}}
+            <div class="list-item-wrap">
+                <div class="table-row space-between">
+                    <div class="col-3 left">
+                        <div>{{date}}</div>
+                        <div class="finished-checkbox">
+                            <input id="finish-{{_id}}" type="checkbox" name="finish" value="finished">
+                            <label for="finish-{{_id}}">Finished</label>
+                        </div>
+                    </div>
+                    <div class="col-5 middle">
+                        <div class="title">{{pizzaName}}</div>
+                        <div class="description">{{description}}</div>
+                    </div>
+                    <div class="col-2 right">
+                        <a class="button green" href="note.html#{{_id}}">Edit</a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</main>
+</script>
+
+<footer>
+    <h3>Shekeb Roya</h3>
+    <h2>[CAS FEE] Abgabe {{Gruppennummer}}</h2>
+</footer>
+<script src="../js/libs/jquery-2.1.4.min.js"></script>
+<script src="../js/utils/ajaxUtil.js"></script>
+<script src="../js/services/valueStorage.js"></script>
+<script src="../js/services/restClient.js"></script>
+<script src="../js/controllers/indexController.js"></script>
+
+<script src="../js/libs/handlebars-v4.0.5.js"></script>
+<script src="../js/utils/handlebarsHelpers.js"></script>
+
+</body>
+
+</html>
