@@ -1,19 +1,26 @@
 const Datastore = require('nedb');
 const db = new Datastore({ filename: './data/order.db', autoload: true });
 
-function Order(pizzaName, description, orderedBy)
+function Order(pizzaName, titleValue, descriptionValue, importanceValue, finishDateValue, finished, editing, day)
 {
-    this.orderedBy = orderedBy;
+
     this.pizzaName = pizzaName;
-    this.description = description;
+    this.titleValue = titleValue;
+    this.descriptionValue = descriptionValue;
+    this.importanceValue = importanceValue;
+    this.finishDateValue = finishDateValue;
+    this.createdValue = new Date();
+    this.finished = finished;
+    this.editing = editing;
+    this.day = day;
     this.orderDate = new Date();
     this.state = "OK";
 }
 
 
-function publicAddOrder(pizzaName, orderedBy, callback)
+function publicAddOrder(pizzaName, callback, titleValue, descriptionValue, importanceValue, finishDateValue, finished, editing, day)
 {
-    let order = new Order(pizzaName, description, orderedBy);
+    let order = new Order(pizzaName, titleValue, descriptionValue, importanceValue, finishDateValue, finished, editing, day);
     db.insert(order, function(err, newDoc){
         if(callback){
             callback(err, newDoc);
@@ -21,23 +28,23 @@ function publicAddOrder(pizzaName, orderedBy, callback)
     });
 }
 
-function publicRemove(id, currentUser, callback) {
-    db.update({_id: id, orderedBy : currentUser}, {$set: {"state": "DELETED"}}, {}, function (err, count) {
-        publicGet(id,currentUser, callback);
+function publicRemove(id, callback) {
+    db.update({_id: id}, {$set: {"state": "DELETED"}}, {}, function (err, count) {
+        publicGet(id, callback);
     });
 }
 
-function publicGet(id, currentUser, callback)
+function publicGet(id, callback)
 {
-    db.findOne({ _id: id, orderedBy : currentUser }, function (err, doc) {
+    db.findOne({ _id: id }, function (err, doc) {
         callback( err, doc);
     });
 }
 
-function publicAll(currentUser, callback)
+function publicAll(callback)
 {
-    db.find({orderedBy : currentUser}).sort({ orderDate: -1 }).exec(function (err, docs) {
-        callback( err, docs);
+    db.find({}, function (err, doc) {
+        callback( err, doc);
     });
 }
 

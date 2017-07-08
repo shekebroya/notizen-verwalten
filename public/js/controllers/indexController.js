@@ -3,29 +3,35 @@
 
     $(function(){
         const btnNewPizza = $("#createPizza");
-        const btnLogin = $("#login");
-        const btnLogout = $("#logout");
         const inputPizza = $("#pizzaName");
+        const inputTitle = $("#title");
+        const inputDescription = $("#description");
+        const checkImportance = $(".rating").prop('checked', true);
+        const inputFinishDate = $("#date");
+
         const ordersContainer = $("#ordersContainer");
 
         const ordersRenderer = Handlebars.compile($("#orders-template").html());
 
         btnNewPizza.click(function (event) {
-            client.createPizza(inputPizza.val()).done(function (msg) {
+            client.createPizza(
+                inputPizza.val(),
+                inputTitle.val(),
+                inputDescription.val(),
+                checkImportance.val(),
+                inputFinishDate.val()
+            ).done(function (msg) {
                 renderOrders();
             }).fail(function( msg ) {
                 //nothing!
             });
             inputPizza.val("");
+            inputTitle.val("");
+            inputDescription.val("");
+            checkImportance.val("");
+            inputFinishDate.val("");
+
             event.preventDefault();
-        });
-
-        btnLogin.click(function () {
-            client.login("admin@admin.ch", "123456").then(updateStatus);
-        });
-
-        btnLogout.click(function () {
-            client.logout().then(updateStatus);
         });
 
         function renderOrders()
@@ -40,13 +46,7 @@
         });
 
         function updateStatus() {
-                $(".js-non-user").toggle(!client.isLogin());
-                $(".js-user").toggle(client.isLogin());
-
-                if(client.isLogin())
-                {
-                    renderOrders();
-                }
+            renderOrders();
         }
         updateStatus();
     });
