@@ -1,16 +1,5 @@
-{"orderedBy":"admin@admin.ch","pizzaName":"hase","createdValue":{"$$date":1499523981495},"orderDate":{"$$date":1499523981495},"state":"OK","_id":"CSWt14DoHsKrukHw"}
-{"orderedBy":"admin@admin.ch","pizzaName":"lsfs","createdValue":{"$$date":1499520952682},"orderDate":{"$$date":1499520952682},"state":"OK","_id":"Fqe7WukyumQoPmii"}
-{"orderedBy":"admin@admin.ch","pizzaName":"","createdValue":{"$$date":1499520103433},"orderDate":{"$$date":1499520103433},"state":"OK","_id":"L4LBJMGqrg5QD3nY"}
-{"orderedBy":"admin@admin.ch","pizzaName":"Tonno","descriptionValue":"Tonno description","orderDate":{"$$date":1499280226352},"state":"DELETED","_id":"NRQcNgagDCuB352r"}
-{"orderedBy":"admin@admin.ch","pizzaName":"Salami","descriptionValue":"Tonno description","orderDate":{"$$date":1499500732486},"state":"OK","_id":"OtYdhbQuFNqQtm0k"}
-{"orderedBy":"admin@admin.ch","pizzaName":"hawaii","descriptionValue":"Tonno description","orderDate":{"$$date":1497860490116},"state":"OK","_id":"UWFRnZfevrQ9jGan"}
-{"orderedBy":"admin@admin.ch","pizzaName":"Hawaii","descriptionValue":"Tonno description","orderDate":{"$$date":1497859040051},"state":"OK","_id":"ZfeUsuxUMnqxk1IA"}
-{"pizzaName":"jhkhj","createdValue":{"$$date":1499538829880},"orderDate":{"$$date":1499538829880},"state":"OK","_id":"afKIenhXdHTYOMWo"}
-{"orderedBy":"admin@admin.ch","pizzaName":"asd","createdValue":{"$$date":1499520778178},"orderDate":{"$$date":1499520778178},"state":"OK","_id":"dMIOnbtavL5B1uBl"}
-{"orderedBy":"admin@admin.ch","pizzaName":"Fungi","descriptionValue":"Tonno description","orderDate":{"$$date":1497859050746},"state":"DELETED","_id":"ez3a99pXb8w1WRXN"}
-{"orderedBy":"admin@admin.ch","pizzaName":"","createdValue":{"$$date":1499517494372},"orderDate":{"$$date":1499517494372},"state":"OK","_id":"gyuJ7G1a0iowi4vF"}
-{"orderedBy":"admin@admin.ch","pizzaName":"asda","createdValue":{"$$date":1499520144146},"orderDate":{"$$date":1499520144146},"state":"OK","_id":"krDTm97lMKUZn3Ra"}
-{"orderedBy":"admin@admin.ch","pizzaName":"<sd","createdValue":{"$$date":1499522703825},"orderDate":{"$$date":1499522703825},"state":"OK","_id":"nDLXlbpECoe8l1Jq"}
-{"pizzaName":"ydcsd","createdValue":{"$$date":1499539347614},"orderDate":{"$$date":1499539347614},"state":"OK","_id":"nkiI4QnU6jZ6qT50"}
-{"orderedBy":"admin@admin.ch","pizzaName":"asd","createdValue":{"$$date":1499516769019},"orderDate":{"$$date":1499516769019},"state":"OK","_id":"tceWW4gQyGTJydH5"}
-{"orderedBy":"admin@admin.ch","pizzaName":"Margahrita","descriptionValue":"Tonno description","orderDate":{"$$date":1499500714404},"state":"OK","_id":"uHnlIFWl1EZChLRo"}
+{"note":{"title":"lkajdlja","description":"aöslkdöasd","importance":"","finish":"2017-07-11"},"createdValue":{"$$date":1499603684644},"finished":false,"editing":false,"state":"OK","_id":"81Nn22Be3rwCR2OY"}
+{"note":{"title":"asd","description":"asd","importance":"2","finish":"2017-07-13"},"createdValue":{"$$date":1499604388030},"finished":false,"editing":false,"state":"OK","_id":"ZTjlfDe5idyP5j7p"}
+{"note":{"title":"Notizen verwalten","description":"Notizen verwaltenNotizen verwalten\nNotizen verwalten Notizen verwalten","importance":"3git status
+","finish":"2017-07-11"},"createdValue":{"$$date":1499603058030},"finished":false,"editing":false,"state":"OK","_id":"rjXuoWaTsbLLimDG"}
+{"note":{"title":"asd","description":"","importance":"4","finish":""},"createdValue":{"$$date":1499605571452},"finished":false,"editing":false,"weekday":"tescht","state":"OK","_id":"tgTuh4Z6JUaAgsRF"}

@@ -1,10 +1,26 @@
-<!DOCTYPE html>
+
+<!DOCTYPE HTML>
 <html lang="de">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Bestellung</title>
+
+    <meta charset="utf-8" >
+    <title>Projekt: Notizen verwalten</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+    <meta name="viewport" content="width=device-width, initial-scale=1" >
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="description" content="Das Projekt sollte gut strukturiert sein aber weitgehend auf die Nutzung von Frameworks verzichten.">
+    <link type="text/css" rel="stylesheet" href="css/styles.css" >
+
 </head>
+
 <body>
+
+    <header>
+        <h1>Projekt: Notizen verwalten</h1>
+        <p>Das Projekt sollte gut strukturiert sein aber weitgehend auf die Nutzung von Frameworks verzichten.</p>
+    </header>
 
     <div id="orderContainer"></div>
 
@@ -28,9 +44,62 @@
             <button  data-id="{{_id}}" class="js-delete">Löschen</button>
         {{/ifCond}}
         <a href="index.html">Zurück</a>
+
+        <form class="create-note">
+            <fieldset class="table-row space-between">
+                <div class="col-3 left">
+                    <label for="title">Title</label>
+                </div>
+                <div class="col-9">
+                    <input id="title" type="text" name="title" value="{{note.title}}">
+                </div>
+            </fieldset>
+            <fieldset class="table-row space-between">
+                <div class="col-3 left">
+                    <label for="description">Beschreibung</label>
+                </div>
+                <div class="col-9">
+                    <textarea id="description" name="description" placeholder="Bitte bechreiben Sie ihre Notiz">{{note.description}}</textarea>
+                </div>
+            </fieldset>
+            <fieldset class="table-row space-between">
+                <div class="col-3 left">
+                    <span>Wichtigkeit</span>
+                </div>
+                <div class="col-9">
+                <span class="importance">
+                    <input type="radio" id="rating-6" class="rating" name="rating" value="6" /><label for="rating-6">5</label>
+                    <input type="radio" id="rating-5" class="rating" name="rating" value="5" /><label for="rating-5">4</label>
+                    <input type="radio" id="rating-4" class="rating" name="rating" value="4" /><label for="rating-4">3</label>
+                    <input type="radio" id="rating-3" class="rating" name="rating" value="3" /><label for="rating-3">2</label>
+                    <input type="radio" id="rating-2" class="rating" name="rating" value="2" /><label for="rating-2">1</label>
+                    <input type="radio" id="rating-1" class="rating" name="rating" value="1" /><label for="rating-1">0</label>
+                    <input checked="checked" type="radio" id="rating-9" class="rating" name="rating" value="0" />
+                </span>
+                </div>
+            </fieldset>
+            <fieldset class="table-row space-between">
+                <div class="col-3 left">
+                    <label for="date">Erledigt bis</label>
+                </div>
+                <div class="col-9">
+                    <input id="date" type="date" name="date" placeholder="TT/MM/JJJJ"  value="{{finish}}>
+                </div>
+            </fieldset>
+            <fieldset class="table-row space-between">
+                <div class="col-3 left">
+                    <input id="cancel" class="button green" type="button" value="Cancel">
+                </div>
+                <div class="col-3 right">
+
+                    <button id="updateNote" data-id="{{_id}}" class="button green">Aktualisieren</button>
+
+                    <input id="createNote" class="button green" type="submit" value="Speichern">
+
+                </div>
+            </fieldset>
+        </form>
     </script>
-
-
 
     <script src="../js/libs/jquery-2.1.4.min.js"></script>
     <script src="../js/utils/ajaxUtil.js"></script>

@@ -1,15 +1,16 @@
 const store = require("../services/orderStore.js");
 
-module.exports.getOrders = function(req, res)
+module.exports.getNotes = function(req, res)
 {
     store.all(function (err, orders) {
         res.json(orders || {});
     })
 };
 
-module.exports.createPizza = function(req, res)
+module.exports.createNote = function(req, res)
 {
-    let order = store.add(req.body.name, function(err, order) {
+    console.log("req: "+req);
+    let order = store.add(req.body, function(err, order) {
         res.json(order);
     });
 };
@@ -22,7 +23,14 @@ module.exports.showOrder = function(req, res){
 
 module.exports.deleteOrder =  function (req, res)
 {
-    store.delete(  req.params.id, function(err, order) {
+    store.delete(req.params.id, function(err, order) {
+        res.json(order);
+    });
+};
+
+module.exports.updateNote =  function (req, res)
+{
+    store.update(req.params.id, function(err, order) {
         res.json(order);
     });
 };

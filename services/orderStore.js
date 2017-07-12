@@ -1,26 +1,23 @@
 const Datastore = require('nedb');
 const db = new Datastore({ filename: './data/order.db', autoload: true });
 
-function Order(pizzaName, titleValue, descriptionValue, importanceValue, finishDateValue, finished, editing, day)
+function Note(note, titleValue, descriptionValue, importanceValue, finishDateValue)
 {
-
-    this.pizzaName = pizzaName;
+    this.note = note;
     this.titleValue = titleValue;
     this.descriptionValue = descriptionValue;
     this.importanceValue = importanceValue;
     this.finishDateValue = finishDateValue;
     this.createdValue = new Date();
-    this.finished = finished;
-    this.editing = editing;
-    this.day = day;
-    this.orderDate = new Date();
+    this.finished = false;
+    this.editing = false;
     this.state = "OK";
 }
 
 
-function publicAddOrder(pizzaName, callback, titleValue, descriptionValue, importanceValue, finishDateValue, finished, editing, day)
+function publicAddNote(note, callback)
 {
-    let order = new Order(pizzaName, titleValue, descriptionValue, importanceValue, finishDateValue, finished, editing, day);
+    let order = new Note(note);
     db.insert(order, function(err, newDoc){
         if(callback){
             callback(err, newDoc);
@@ -30,6 +27,11 @@ function publicAddOrder(pizzaName, callback, titleValue, descriptionValue, impor
 
 function publicRemove(id, callback) {
     db.update({_id: id}, {$set: {"state": "DELETED"}}, {}, function (err, count) {
+        publicGet(id, callback);
+    });
+}
+function publicUpdate(id, callback) {
+    db.update({_id: id}, {$set: {"edited": "true"}}, {}, function (err, count) {
         publicGet(id, callback);
     });
 }
@@ -48,4 +50,4 @@ function publicAll(callback)
     });
 }
 
-module.exports = {add : publicAddOrder, delete : publicRemove, get : publicGet, all : publicAll};
+module.exports = {add : publicAddNote, delete : publicRemove, get : publicGet, all : publicAll, put: publicUpdate};
