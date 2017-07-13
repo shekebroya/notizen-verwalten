@@ -30,8 +30,19 @@ function publicRemove(id, callback) {
         publicGet(id, callback);
     });
 }
-function publicUpdate(id, callback) {
-    db.update({_id: id}, {$set: {"edited": "true"}}, {}, function (err, count) {
+function publicUpdate(id, callback, titleValue, descriptionValue, ratingValue, dateValue) {
+    console.log("titleValue: "+titleValue);
+    console.log("id: "+id);
+    console.log("callback: "+callback);
+
+    db.update({_id: id}, {$set: {"finished": true}}, {}, function (err, count) {
+        publicGet(id, callback);
+    });
+}
+function publicEdit(id, titleValue, descriptionValue, ratingValue, dateValue, callback) {
+    console.log(titleValue);
+    alert(titleValue);
+    db.update({_id: id}, {$set: {"finished": false, "editing": true}, "note":{ "title": titleValue, "description": descriptionValue, "rating": ratingValue, "date": dateValue}}, {}, function (err, count) {
         publicGet(id, callback);
     });
 }
@@ -50,4 +61,4 @@ function publicAll(callback)
     });
 }
 
-module.exports = {add : publicAddNote, delete : publicRemove, get : publicGet, all : publicAll, put: publicUpdate};
+module.exports = {add : publicAddNote, delete : publicRemove, get : publicGet, all : publicAll, put: publicUpdate, edit: publicEdit};

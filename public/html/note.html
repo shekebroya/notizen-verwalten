@@ -22,10 +22,10 @@
     <p>Das Projekt sollte gut strukturiert sein aber weitgehend auf die Nutzung von Frameworks verzichten.</p>
 </header>
 
-<div id="noteContainer"></div>
+<div id="newNoteContainer"></div>
 
-<script id="note-template" type="text/x-handlebars-template">
-<form class="create-note">
+<script id="newNote-template" type="text/x-handlebars-template">
+<form class="create-note" action="index.html">
     <fieldset class="table-row space-between">
         <div class="col-3 left">
             <label for="title">Title</label>
@@ -63,7 +63,7 @@
             <label for="date">Erledigt bis</label>
         </div>
         <div class="col-9">
-            <input id="date" type="date" name="date" placeholder="TT/MM/JJJJ">
+            <input id="date" type="text" name="date" placeholder="TT/MM/JJJJ">
         </div>
     </fieldset>
     <fieldset class="table-row space-between">
@@ -71,10 +71,7 @@
             <input id="cancel" class="button green" type="button" value="Cancel">
         </div>
         <div class="col-3 right">
-
-            <button id="updateNote" data-id="{{_id}}" class="button green">Aktualisieren</button>
             <input id="createNote" class="button green" type="submit" value="Speichern">
-
         </div>
     </fieldset>
 </form>
@@ -91,7 +88,7 @@
 <script src="../js/utils/ajaxUtil.js"></script>
 <script src="../js/services/valueStorage.js"></script>
 <script src="../js/services/restClient.js"></script>
-<script src="../js/controllers/indexController.js"></script>
+<script src="../js/controllers/noteController.js"></script>
 
 <script src="../js/libs/handlebars-v4.0.5.js"></script>
 <script src="../js/utils/handlebarsHelpers.js"></script>

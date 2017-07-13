@@ -45,10 +45,9 @@
 
         <div id="note-list" class="list-item-wrap">
             {{#each orders}}
-            <div class="list-item-wrap">
+            <div class="list-item">
                 <div class="col-12 right">
                     <div class="importance">
-                        <p>{{note.importance}}</p>
                         {{#switch note.importance}}
                         {{#case ""}}
                             <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
@@ -69,7 +68,7 @@
                             <span>☆</span><span>☆</span><span class="active">☆</span><span class="active">☆</span><span class="active">☆</span><span class="active">☆</span>
                         {{/case}}
                         {{#case "5"}}
-                            <span>☆</span><span class="active">☆</span><span class="active">☆</span><span class="active">☆</span><span>☆</span><span class="active">☆</span>
+                            <span>☆</span><span class="active">☆</span><span class="active">☆</span><span class="active">☆</span><span class="active">☆</span><span class="active">☆</span>
                         {{/case}}
                         {{#case "6"}}
                             <span class="active">☆</span><span class="active">☆</span><span class="active">☆</span><span class="active">☆</span><span class="active">☆</span><span class="active">☆</span>
@@ -79,9 +78,13 @@
                 </div>
                 <div class="table-row space-between">
                     <div class="col-3 left">
-                        <div>{{weekday}}</div>
+                        <div>{{note.finish}}</div>
                         <div class="finished-checkbox">
-                            <input id="finish-{{_id}}" type="checkbox" name="finish" value="finished">
+                        {{#ifCond finished '===' false}}
+                            <input id="finish-{{_id}}" class="js-finish" type="checkbox" name="finish" value="finished" data-id="{{_id}}">
+                            {{else}}
+                            <input type="checkbox" name="finish" value="finished" disabled="disabled" checked="checked">
+                        {{/ifCond}}
                             <label for="finish-{{_id}}">Finished</label>
                         </div>
                     </div>
@@ -90,7 +93,7 @@
                         <div class="description">{{note.description}}</div>
                     </div>
                     <div class="col-2 right">
-                        <a class="button green js-update" href="order.html#{{_id}}">Edit</a>
+                        <a class="button green" href="order.html#{{_id}}">Edit</a>
                     </div>
                 </div>
             </div>

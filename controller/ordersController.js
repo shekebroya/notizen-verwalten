@@ -9,7 +9,6 @@ module.exports.getNotes = function(req, res)
 
 module.exports.createNote = function(req, res)
 {
-    console.log("req: "+req);
     let order = store.add(req.body, function(err, order) {
         res.json(order);
     });
@@ -30,7 +29,13 @@ module.exports.deleteOrder =  function (req, res)
 
 module.exports.updateNote =  function (req, res)
 {
-    store.update(req.params.id, function(err, order) {
+    store.put(req.params.id, function(err, order) {
+        res.json(order);
+    });
+};
+module.exports.editNote =  function (req, res)
+{
+    store.edit(req.params.id, function(err, order) {
         res.json(order);
     });
 };

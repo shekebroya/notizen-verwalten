@@ -3,58 +3,26 @@
 
     $(function(){
 
-        const btnNewNote = $("#createNote");
-        const btnUpdateNote = $("#updateNote");
-        const btnCancelNoteFields = $("#cancel");
-        const inputTitle = $("#title");
-        const inputDescription = $("#description");
-        const checkImportance = $(".rating").prop('checked', true);
-        const inputFinishDate = $("#date");
+        var notesContainer = $("#newNoteContainer");
+        var ordersRenderer = Handlebars.compile($("#newNote-template").html());
+        client.getNotes().done(function(orders){
+            notesContainer.html(ordersRenderer({orders : orders}));
+        });
 
-        const notesContainer = $("#noteContainer");
-
-        const ordersRenderer = Handlebars.compile($("#note-template").html());
-
-        btnNewNote.click(function (event) {
+        $("#newNoteContainer").on("click", "#createNote", function () {
             client.createNote(
-                inputTitle.val(),
-                inputDescription.val(),
-                checkImportance.val(),
-                inputFinishDate.val()
-            ).done(function (msg) {
-                renderNotes();
-            }).fail(function( msg ) {
-                //nothing!
-            });
-            event.preventDefault();
-        });
-        btnUpdateNote.click(function (event) {
-            client.updateNote(
-                inputTitle.val(),
-                inputDescription.val(),
-                checkImportance.val(),
-                inputFinishDate.val()
+                $("#title").val(),
+                $("#description").val(),
+                $('.rating:checked').val(),
+                $("#date").val()
             );
-            event.preventDefault();
         });
-        btnCancelNoteFields.click(function () {
-            alert("Cancel");
-            inputTitle.val("");
-            inputDescription.val("");
-            checkImportance.val("");
-            inputFinishDate.val("");
+        $("#newNoteContainer").on("click", "#cancel", function () {
+            $("#title").val("");
+            $("#description").val("");
+            $('.rating').prop('checked', false);
+            $("#date").val("");
         });
 
-        function renderNotes()
-        {
-            client.getNotes().done(function(orders){
-                notesContainer.html(ordersRenderer({orders : orders}));
-            })
-        }
-
-        function updateStatus() {
-            renderNotes();
-        }
-        updateStatus();
     });
 }(jQuery));

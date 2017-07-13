@@ -4,27 +4,39 @@
         var output = $("#output");
 
         var orderContainer = $("#orderContainer");
-        let orderRenderer = Handlebars.compile($("#order-template").html());
+        var orderRenderer = Handlebars.compile($("#order-template").html());
 
-        let orderId = window.location.hash.substring(1);
+        var orderId = window.location.hash.substring(1);
         if(!(orderId)) {
-
             window.location.replace("./index.html");
             return;
         }
+        Handlebars.registerHelper("switch", function(value, options) {
+            this._switch_value_ = value;
+            var html = options.fn(this);
+            delete this._switch_value_;
+            return html;
+        });
+
+        Handlebars.registerHelper("case", function(value, options) {
+            if (value == this._switch_value_) {
+                return options.fn(this);
+            }
+        });
+
+        $(orderContainer).on("click", ".js-edit", function(event){
+            var titleValue = $("#title").val();
+            var descriptionValue = $("#description").val();
+            var ratingValue = $('.rating:checked').val();
+            var dateValue = $("#date").val();
+            client.updateNote($(event.currentTarget).data("id"), titleValue, descriptionValue, ratingValue, dateValue ).done(renderNote);
+        });
 
         function renderNote() {
             client.getNote(orderId).done(function(order){
                 orderContainer.html(orderRenderer(order));
             })
         }
-
-        $(orderContainer).on("click", ".js-delete", function(event){
-            client.deleteOrder($(event.currentTarget).data("id")).done(renderNote);
-        });
-        $(orderContainer).on("click", ".js-update", function(event){
-            client.updateNote($(event.currentTarget).data("id")).done(renderNote);
-        });
 
         renderNote();
     });
