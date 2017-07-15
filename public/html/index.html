@@ -40,7 +40,7 @@
             <li id="finish" class="filter-item"><a class="button transparent" href="#" title="filter by finish date">Finish-Date</a></li>
             <li id="created" class="filter-item"><a class="button transparent" href="#" title="filter by created date">Create-Date</a></li>
             <li id="importance" class="filter-item"><a class="button transparent" href="#" title="filter by importance">Importance</a></li>
-            <li id="finished" class="filter-item"><a class="button transparent" href="#" title="filter by finished notes">Finished</a></li>
+            <li id="finished" data-sort="finished: true" class="filter-item"><a class="button transparent" href="#" title="filter by finished notes">Finished</a></li>
         </ul>
 
         <div id="note-list" class="list-item-wrap">
@@ -82,7 +82,7 @@
                         <div class="finished-checkbox">
                         {{#ifCond finished '===' false}}
                             <input id="finish-{{_id}}" class="js-finish" type="checkbox" name="finish" value="finished" data-id="{{_id}}">
-                            {{else}}
+                        {{else}}
                             <input type="checkbox" name="finish" value="finished" disabled="disabled" checked="checked">
                         {{/ifCond}}
                             <label for="finish-{{_id}}">Finished</label>

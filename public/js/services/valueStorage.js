@@ -1,6 +1,9 @@
 ;(function(services) {
     function setItem(name, value) {
+        alert(name);
+        console.log(name);
         if (value) {
+            console.log(value);
             localStorage.setItem(name, JSON.stringify(value));
         }
         else {

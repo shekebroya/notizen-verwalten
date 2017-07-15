@@ -20,22 +20,24 @@ module.exports.showOrder = function(req, res){
     });
 };
 
-module.exports.deleteOrder =  function (req, res)
+module.exports.sortNote =  function (req, res)
 {
-    store.delete(req.params.id, function(err, order) {
+    console.log("req.body: "+req.body);
+    store.sort(req.body, function(err, order) {
+        console.log(req.body);
         res.json(order);
     });
 };
 
 module.exports.updateNote =  function (req, res)
 {
-    store.put(req.params.id, function(err, order) {
+    store.update(req.params.id, function(err, order) {
         res.json(order);
     });
 };
 module.exports.editNote =  function (req, res)
 {
-    store.edit(req.params.id, function(err, order) {
+    store.edit(req.params.id, req.body, function(err, order) {
         res.json(order);
     });
 };

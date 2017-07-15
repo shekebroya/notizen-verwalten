@@ -29,7 +29,7 @@
             var descriptionValue = $("#description").val();
             var ratingValue = $('.rating:checked').val();
             var dateValue = $("#date").val();
-            client.updateNote($(event.currentTarget).data("id"), titleValue, descriptionValue, ratingValue, dateValue ).done(renderNote);
+            client.editNote($(event.currentTarget).data("id"), titleValue, descriptionValue, ratingValue, dateValue ).done(renderNote);
         });
 
         function renderNote() {

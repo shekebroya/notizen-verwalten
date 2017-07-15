@@ -5,7 +5,8 @@ const orders = require('../controller/ordersController.js');
 router.get("/", orders.getNotes);
 router.post("/", orders.createNote);
 router.get("/:id/", orders.showOrder);
-router.delete("/:id/", orders.deleteOrder);
+router.get("/sort/", orders.sortNote);
 router.put("/:id/", orders.updateNote);
+router.put("/edit/:id/", orders.editNote);
 
 module.exports = router;

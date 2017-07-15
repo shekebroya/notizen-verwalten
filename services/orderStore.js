@@ -8,12 +8,11 @@ function Note(note, titleValue, descriptionValue, importanceValue, finishDateVal
     this.descriptionValue = descriptionValue;
     this.importanceValue = importanceValue;
     this.finishDateValue = finishDateValue;
-    this.createdValue = new Date();
+    this.createdValue = JSON.stringify(new Date());
     this.finished = false;
     this.editing = false;
     this.state = "OK";
 }
-
 
 function publicAddNote(note, callback)
 {
@@ -25,24 +24,20 @@ function publicAddNote(note, callback)
     });
 }
 
-function publicRemove(id, callback) {
-    db.update({_id: id}, {$set: {"state": "DELETED"}}, {}, function (err, count) {
+function publicSort(callback) {
+    console.log("publicSort oderstor.js");
+    db.find({"finished":true}, function (err, doc) {
+        console.log("docs:"+doc);
+        callback( err, doc);
+    });
+}
+function publicEdit(id, note, callback) {
+    db.update({_id: id}, {$set: {note: {"title": note.title, "description": note.description, "importance": note.importance, "finish": note.finish}}}, {}, function (err, count) {
         publicGet(id, callback);
     });
 }
-function publicUpdate(id, callback, titleValue, descriptionValue, ratingValue, dateValue) {
-    console.log("titleValue: "+titleValue);
-    console.log("id: "+id);
-    console.log("callback: "+callback);
-
+function publicUpdate(id, callback) {
     db.update({_id: id}, {$set: {"finished": true}}, {}, function (err, count) {
-        publicGet(id, callback);
-    });
-}
-function publicEdit(id, titleValue, descriptionValue, ratingValue, dateValue, callback) {
-    console.log(titleValue);
-    alert(titleValue);
-    db.update({_id: id}, {$set: {"finished": false, "editing": true}, "note":{ "title": titleValue, "description": descriptionValue, "rating": ratingValue, "date": dateValue}}, {}, function (err, count) {
         publicGet(id, callback);
     });
 }
@@ -61,4 +56,12 @@ function publicAll(callback)
     });
 }
 
-module.exports = {add : publicAddNote, delete : publicRemove, get : publicGet, all : publicAll, put: publicUpdate, edit: publicEdit};
+
+module.exports = {
+    add : publicAddNote,
+    sort : publicSort,
+    get : publicGet,
+    all : publicAll,
+    update: publicUpdate,
+    edit: publicEdit
+};
