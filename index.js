@@ -12,7 +12,7 @@ app.get("/", function(req, res){
     res.sendFile("/html/index.html",  {root: __dirname + '/public/'});
 });
 
-app.use("/orders", require('./routes/orderRoutes.js'));
+app.use("/notizen", require('./routes/noteRoutes.js'));
 
 
 app.use(function (err, req, res, next) {

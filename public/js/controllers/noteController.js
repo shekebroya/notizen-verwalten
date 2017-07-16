@@ -3,10 +3,10 @@
 
     $(function(){
 
-        var notesContainer = $("#newNoteContainer");
-        var ordersRenderer = Handlebars.compile($("#newNote-template").html());
-        client.getNotes().done(function(orders){
-            notesContainer.html(ordersRenderer({orders : orders}));
+        let notesContainer = $("#newNoteContainer");
+        let notizenRenderer = Handlebars.compile($("#newNote-template").html());
+        client.getNotes().done(function(notizen){
+            notesContainer.html(notizenRenderer({notizen : notizen}));
         });
 
         $("#newNoteContainer").on("click", "#createNote", function () {

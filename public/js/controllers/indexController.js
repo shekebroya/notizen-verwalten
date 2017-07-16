@@ -4,11 +4,11 @@
     $(function(){
 
         const notesContainer = $("#notesContainer");
-        const ordersRenderer = Handlebars.compile($("#notes-template").html());
+        const notizenRenderer = Handlebars.compile($("#notes-template").html());
 
         Handlebars.registerHelper("switch", function(value, options) {
             this._switch_value_ = value;
-            var html = options.fn(this);
+            let html = options.fn(this);
             delete this._switch_value_;
             return html;
         });
@@ -17,38 +17,91 @@
                 return options.fn(this);
             }
         });
-        Handlebars.registerHelper('eachSorted', function(context, options) {
-            var ret = "";
-            var fnCompare = function(a,b) {
-                // Turn your strings into dates, and then subtract them
-                // to get a value that is either negative, positive, or zero.
-                return new Date(b) - new Date(a);
-            };
-            Object.keys(context).sort(fnCompare).forEach(function(key) {
-                ret = ret + options.fn({key: key, value: context[key]})
-            });
-            Object.keys(context).sort().forEach(function(key) {
-                ret = ret + options.fn({key: key, value: context[key]})
-            });
-            return ret
-        });
-
-        function renderNotes()
-        {
-            client.getNotes().done(function(orders){
-                notesContainer.html(ordersRenderer({orders : orders}));
-            })
+        function renderNotes(key) {
+            if(key === undefined){
+                key = "";
+            }
+            if(key === "importance" ) {
+                sortByImportance();
+            }else  if(key === "finish" ) {
+                sortByFinish();
+            }else  if(key === "created" ) {
+                sortByCreated();
+            }else {
+                client.getNotes().done(function(notizen){
+                    notesContainer.html(notizenRenderer({notizen : notizen}));
+                })
+            }
         }
-
+        $(notesContainer).on("click", "#finish", function() {
+            let key = "finish";
+            renderNotes(key);
+        });
+        $(notesContainer).on("click", "#created", function() {
+            let key = "created";
+            renderNotes(key);
+        });
+        $(notesContainer).on("click", "#importance", function() {
+            let key = "importance";
+            renderNotes(key);
+        });
         $(notesContainer).on("click", "#finished", function() {
-            console.log("click");
             client.sortNote().done(renderNotes);
         });
         $(notesContainer).on("click", ".js-finish", function(event) {
             client.updateNote($(event.currentTarget).data("id")).done(renderNotes);
         });
-
-
+        $(notesContainer).on("mouseout", "select", function() {
+            var selectedStyle = $("option").filter(':selected').text();
+            console.log(selectedStyle);
+            if(selectedStyle === "BlackWhite-Style"){
+                $("body").addClass("bw-style");
+            }else {
+                $("body").removeClass("bw-style");
+            }
+        });
+        function sortByFinish() {
+            client.getNotes().done(function(notizen) {
+                notizen.sort(function (a, b) {
+                    if (a.note.finish > b.note.finish) {
+                        return +1;
+                    }
+                    if (a.note.finish < b.note.finish) {
+                        return -1;
+                    }
+                    return 0;
+                });
+                notesContainer.html(notizenRenderer({notizen : notizen}));
+            });
+        }
+        function sortByImportance() {
+            client.getNotes().done(function(notizen) {
+                notizen.sort(function (a, b) {
+                    if (a.note.importance > b.note.importance) {
+                        return -1;
+                    }
+                    if (a.note.importance < b.note.importance) {
+                        return +1;
+                    }
+                    return 0;
+                });
+                notesContainer.html(notizenRenderer({notizen : notizen}));
+            });
+        }
+        function sortByCreated() {
+            client.getNotes().done(function(notizen) {
+                notizen.sort(function (a, b) {
+                    if (a.createdValue > b.createdValue) {
+                        return -1;
+                    }
+                    if (a.createdValue < b.createdValue) {
+                        return +1;
+                    }
+                    return 0;
+                });
+                notesContainer.html(notizenRenderer({notizen : notizen}));
+            });
+        }
         function updateStatus() {
             renderNotes();
         }

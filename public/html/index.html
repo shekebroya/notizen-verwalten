@@ -44,7 +44,7 @@
         </ul>
 
         <div id="note-list" class="list-item-wrap">
-            {{#each orders}}
+            {{#each notizen}}
             <div class="list-item">
                 <div class="col-12 right">
                     <div class="importance">
@@ -93,7 +93,7 @@
                         <div class="description">{{note.description}}</div>
                     </div>
                     <div class="col-2 right">
-                        <a class="button green" href="order.html#{{_id}}">Edit</a>
+                        <a class="button green" href="edit-note.html#{{_id}}">Edit</a>
                     </div>
                 </div>
             </div>
@@ -109,7 +109,6 @@
 </footer>
 <script src="../js/libs/jquery-2.1.4.min.js"></script>
 <script src="../js/utils/ajaxUtil.js"></script>
-<script src="../js/services/valueStorage.js"></script>
 <script src="../js/services/restClient.js"></script>
 <script src="../js/controllers/indexController.js"></script>
 

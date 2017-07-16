@@ -278,7 +278,6 @@ textarea {
 #rating-9 {
     display: none;
 }
-
 .importance > span {
     display: inline-block;
     position: relative;
@@ -362,6 +361,8 @@ fieldset {
      content: "\2605";
      color: #00b17b;
 }
+
+
 /*********************************************************************************************************
 **  Footer
 */
@@ -375,4 +376,37 @@ footer {
     background: -o-linear-gradient(225deg, #50aaba 0px, #01519e 100%) no-repeat scroll 0 0;
     background: -ms-linear-gradient(225deg, #50aaba 0px, #01519e 100%) no-repeat scroll 0 0;
     background: linear-gradient(225deg, #50aaba 0px, #01519e 100%) no-repeat scroll 0 0;
+}
+
+
+/*********************************************************************************************************
+**  Black White Style
+*/
+.bw-style header, .bw-style .button.green, .bw-style footer, .bw-style select {
+    background: black;
+    background-color: black;
+    color: #fff;
+}
+.bw-style h1,
+.bw-style .list-item:nth-child(odd) .importance > span {
+    color: white;
+}
+.bw-style .importance > span {
+    color: black;
+}
+.bw-style .list-item:nth-child(odd) {
+    background-color: black;
+    color: white;
+}
+.bw-style .list-item:nth-child(odd) .button.green {
+    color: black;
+    background-color: white;;
+}
+
+.bw-style .button.transparent:hover,
+.bw-style .button.transparent:focus,
+.bw-style .button.transparent:active,
+.bw-style .button.transparent.active {
+    background-color: black;
+    color: white;
 }
